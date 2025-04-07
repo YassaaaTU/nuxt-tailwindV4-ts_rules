@@ -9,5 +9,4 @@ node_modules
 .env
 .cargo
 dist
-src-tauri/target
 bun.lockb
