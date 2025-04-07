@@ -7,6 +7,5 @@ node_modules
 .cache
 .output
 .env
-.cargo
 dist
 bun.lockb
