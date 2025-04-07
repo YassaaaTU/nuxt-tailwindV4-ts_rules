@@ -1,0 +1,45 @@
+{
+	"name": "nuxt_tailwindv4_template",
+	"type": "module",
+	"version": "1.0.0",
+	"private": true,
+	"packageManager": "bun@1.2.6",
+	"author": "YassaaaTU aka YasirJumaah",
+	"license": "MIT",
+	"engines": {
+		"node": ">=23"
+	},
+	"scripts": {
+		"dev": "nuxt dev",
+		"generate": "nuxt generate",
+		"clean": "rm -r .nuxt .output node_modules",
+		"preinstall": "bunx only-allow bun",
+		"postinstall": "nuxt prepare",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix"
+	},
+	"dependencies": {
+		"nuxt": "^3.16.0",
+		"vue": "^3.5.13",
+		"vue-router": "^4.5.0"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.23.0",
+		"@nuxt/eslint": "1.2.0",
+		"@nuxt/icon": "^1.11.0",
+		"@nuxt/image": "^1.10.0",
+		"@pinia/nuxt": "^0.10.1",
+		"@stylistic/eslint-plugin": "^4.2.0",
+		"@tailwindcss/vite": "^4.0.17",
+		"@typescript-eslint/eslint-plugin": "^8.28.0",
+		"@typescript-eslint/parser": "^8.28.0",
+		"@vueuse/nuxt": "^13.0.0",
+		"daisyui": "^5.0.11",
+		"eslint": "^9.0.0",
+		"nuxt-svgo": "^4.0.15",
+		"pinia-plugin-persistedstate": "^4.2.0",
+		"tailwindcss": "^4.0.17",
+		"typescript": "^5.8.2",
+		"vite-plugin-eslint2": "^5.0.3"
+	}
+}

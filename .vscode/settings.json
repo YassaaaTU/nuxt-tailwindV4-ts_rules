@@ -1,0 +1,57 @@
+{
+	// Tailwind compatibility
+	"tailwindCSS.validate": true,
+	// "tailwindCSS.experimental.classRegex": [
+	// 	[
+	// 		"ui:\\s*{([^)]*)\\s*}",
+	// 		"[\"'`]([^\"'`]*).*?[\"'`]"
+	// 	],
+	// 	[
+	// 		"/\\*\\s?ui\\s?\\*/\\s*{([^;]*)}",
+	// 		":\\s*[\"'`]([^\"'`]*).*?[\"'`]"
+	// 	]
+	// ],
+
+	"files.associations": {
+	"*.css": "tailwindcss"
+	},
+	"editor.quickSuggestions": {
+	"strings": "on"
+	},
+	"tailwindCSS.classAttributes": ["class", "ui"],
+	"tailwindCSS.experimental.classRegex": [
+	["ui:\\s*{([^)]*)\\s*}", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+	["tw`(.*?)`", "tw\\('(.*?)'\\)", "tw\\(\\s*('(.*?)'|\"(.*?)\")\\s*\\)"]
+	],
+
+	// Enable eslint for all supported languages
+	"eslint.validate": [
+		"javascript",
+		"typescript",
+		"vue",
+		"html",
+		"markdown",
+		"json",
+		"jsonc",
+		"yaml",
+		"toml"
+	],
+
+	// Eslint
+	"eslint.useFlatConfig": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll": "never",
+		"source.fixAll.eslint": "explicit"
+	},
+	"editor.formatOnSave": false,
+
+	// Prettier
+	"prettier.enable": false,
+
+	// DaisyUI
+	"github.copilot.chat.codeGeneration.instructions": [
+    {
+      "file": "./.vscode/daisyui.md"
+    }
+  ]
+}

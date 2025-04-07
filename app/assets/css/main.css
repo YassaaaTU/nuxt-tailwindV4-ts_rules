@@ -1,0 +1,57 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+	themes: nord, dracula;
+}
+
+:root {
+	--font-heading: "Montserrat", sans-serif;
+	--font-sans: "Inter", sans-serif;
+
+	--primary-color: #1a9fff;
+}
+
+body {
+  @apply antialiased;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.15s ease-out;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+@layer base {
+
+}
+
+@layer utilities {
+	.flex-center {
+		@apply flex justify-center items-center;
+	}
+	.absolute-center-h {
+		@apply left-1/2 transform -translate-x-1/2;
+	}
+	.absolute-center-v {
+		@apply top-1/2 transform -translate-y-1/2;
+	}
+}
+
+.page-enter-active,
+.page-leave-active {
+	@apply transition-opacity ease-in-out duration-300;
+}
+.layout-enter-active,
+.layout-leave-active {
+	@apply transition-opacity ease-in-out duration-500;
+}
+.page-enter-from,
+.page-leave-to,
+.layout-enter-from,
+.layout-leave-to {
+	@apply opacity-0;
+}
