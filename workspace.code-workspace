@@ -19,8 +19,7 @@
       "antfu.file-nesting",
       "github.vscode-github-actions",
       "heybourn.headwind",
-      "lokalise.i18n-ally",
-      "antfu.iconify",
+      "lokalise.i18n-ally",      "antfu.iconify",
       "VisualStudioExptTeam.vscodeintellicode",
       "VisualStudioExptTeam.intellicode-api-usage-examples",
       "xabikos.JavaScriptSnippets",
@@ -30,8 +29,6 @@
       "christian-kohler.npm-intellisense",
       "christian-kohler.path-intellisense",
       "Nuxtr.nuxt-vscode-extentions",
-      "esbenp.prettier-vscode",
-      "rvest.vs-code-prettier-eslint",
       "YoavBls.pretty-ts-errors",
       "dustypomerleau.rust-syntax",
       "rust-lang.rust-analyzer",
@@ -39,15 +36,14 @@
       "bradlc.vscode-tailwindcss",
       "vitest.explorer"
     ]
-  },
-  "settings": {
+  },  "settings": {
     "editor.tabSize": 2,
     "[javascript][javascriptreact][json][typescript][typescriptreact][vue]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
+      "editor.defaultFormatter": "dbaeumer.vscode-eslint"
     },
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "always"
+      "source.fixAll.eslint": "explicit"
     },
     "editor.quickSuggestions": {
       "strings": true
@@ -87,6 +83,12 @@
     "github.copilot.chat.codeGeneration.instructions": [
       {
         "file": "./.vscode/daisyui.md"
+      },
+      {
+        "file": "./.vscode/eslint.instructions.md"
+      },
+      {
+        "file": "./.vscode/nuxtjs.instructions.md"
       }
     ]
   }

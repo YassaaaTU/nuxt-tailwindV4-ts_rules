@@ -23,7 +23,6 @@
 	["ui:\\s*{([^)]*)\\s*}", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
 	["tw`(.*?)`", "tw\\('(.*?)'\\)", "tw\\(\\s*('(.*?)'|\"(.*?)\")\\s*\\)"]
 	],
-
 	// Enable eslint for all supported languages
 	"eslint.validate": [
 		"javascript",
@@ -37,21 +36,27 @@
 		"toml"
 	],
 
-	// Eslint
+	// ESLint as formatter
 	"eslint.useFlatConfig": true,
 	"editor.codeActionsOnSave": {
 		"source.fixAll": "never",
 		"source.fixAll.eslint": "explicit"
 	},
 	"editor.formatOnSave": false,
+	"[javascript][javascriptreact][json][typescript][typescriptreact][vue]": {
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+	},
 
-	// Prettier
-	"prettier.enable": false,
-
-	// DaisyUI
+	// Copilot Chat
 	"github.copilot.chat.codeGeneration.instructions": [
     {
-      "file": "./.vscode/daisyui.md"
-    }
+		"file": "./.vscode/daisyui.md"
+    },
+	{
+		"file": "./.vscode/eslint.instructions.md"
+	},
+	{
+		"file": "./.vscode/nuxtjs.instructions.md"
+	}
   ]
 }

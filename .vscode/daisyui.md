@@ -1,12 +1,15 @@
 # daisyUI 5
-daisyUI 5 is a CSS library for Tailwind CSS
+daisyUI 5 is a CSS library for Tailwind CSS 4
 daisyUI 5 provides class names for common UI components
 
-[docs](http://daisyui.com)
+- [daisyUI 5 docs](http://daisyui.com)
+- [Guide: How to use this file in LLMs and code editors](https://daisyui.com/docs/editor/)
+- [daisyUI 5 release notes](https://daisyui.com/docs/v5/)
+- [daisyUI 4 to 5 upgrade guide](https://daisyui.com/docs/upgrade/)
 
 ## daisyUI 5 install notes
 [install guide](https://daisyui.com/docs/install/)
-1. daisyUI 5 requires Tailwind CSS v4
+1. daisyUI 5 requires Tailwind CSS 4
 2. `tailwind.config.js` file is deprecated in Tailwind CSS v4. do not use `tailwind.config.js`. Tailwind CSS v4 only needs `@import "tailwindcss";` in the CSS file if it's a node dependency.
 3. daisyUI 5 can be installed using `npm i -D daisyui@latest` and then adding `@plugin "daisyui";` to the CSS file
 4. daisyUI is suggested to be installed as a dependency but if you really want to use it from CDN, you can use Tailwind CSS and daisyUI CDN files:
@@ -31,6 +34,7 @@ daisyUI 5 provides class names for common UI components
 8. suggested - if you need placeholder images, use https://picsum.photos/200/300 with the size you want
 9. suggested - when designing , don't add a custom font unless it's necessary
 10. don't add `bg-base-100 text-base-content` to body unless it's necessary
+11. For design decisions, use Refactoring UI book best practices
 
 daisyUI 5 class names are one of the following categories. these type names are only for reference and are not used in the actual code
 - `component`: the required component class
@@ -154,13 +158,17 @@ A CSS file with Tailwind CSS, daisyUI and a custom daisyUI theme looks like this
 
   --size-selector: 0.25rem; /* base size of selectors (checkbox, toggle, badge) */
   --size-field: 0.25rem; /* base size of fields (button, input, select, tab) */
-  
+
   --border: 1px; /* border size */
-  
-  --depth: 1; /* Adds a shadow and subtle 3D effect to components */
-  --noise: 0; /* Adds a subtle noise effect to components */
+
+  --depth: 1; /* only 0 or 1 – Adds a shadow and subtle 3D effect to components */
+  --noise: 0; /* only 0 or 1 - Adds a subtle noise effect to components */
 }
 ```
+#### Rules
+- All CSS variables above are required
+- Colors can be OKLCH or hex or other formats
+
 You can use https://daisyui.com/theme-generator/ to create your own theme
 
 ## daisyUI 5 components
@@ -311,7 +319,7 @@ Calendar includes styles for different calendar libraries
   - `cally (for Cally web component)`
   - `pika-single (for the input field that opens Pikaday calendar)`
   - `react-day-picker (for the DayPicker component)`
-  
+
 #### Syntax
 For Cally:
 ```html
@@ -569,7 +577,7 @@ and {SIDEBAR} can be a menu like:
 - `id` is required for the `drawer-toggle` input. change `my-drawer` to a unique id according to your needs
 - `lg:drawer-open` can be used to make sidebar visible on larger screens
 - `drawer-toggle` is a hidden checkbox. Use label with "for" attribute to toggle state
-- if you want to open the drawer when a button is clicked, use `<label for="my-drawer" class="btn drawer-button">Open drawer</label>` where `my-drawer` is the id of the `drawer-toggle` input  
+- if you want to open the drawer when a button is clicked, use `<label for="my-drawer" class="btn drawer-button">Open drawer</label>` where `my-drawer` is the id of the `drawer-toggle` input
 - when using drawer, every page content must be inside `drawer-content` element. for example navbar, footer, etc should not be outside of `drawer`
 
 ### dropdown
@@ -613,20 +621,20 @@ Using CSS focus
 - The content can be any HTML element (not just `<ul>`)
 
 ### fieldset
-Fieldset is a container for grouping related form elements. It includes fieldset-legend as a title and fieldset-label as a description
+Fieldset is a container for grouping related form elements. It includes fieldset-legend as a title and label as a description
 
 [fieldset docs](https://daisyui.com/components/fieldset/)
 
 #### Class names
-- Component: `fieldset`
-- Parts: `fieldset-legend`, `fieldset-label`
-  
+- Component: `fieldset`, `label`
+- Parts: `fieldset-legend`
+
 #### Syntax
 ```html
 <fieldset class="fieldset">
   <legend class="fieldset-legend">{title}</legend>
   {CONTENT}
-  <p class="fieldset-label">{description}</p>
+  <p class="label">{description}</p>
 </fieldset>
 ```
 
@@ -666,19 +674,21 @@ Using HTML form
 ```html
 <form class="filter">
   <input class="btn btn-square" type="reset" value="×"/>
-  <input class="btn" type="radio" name="{name}" aria-label="{label}"/>
+  <input class="btn" type="radio" name="{NAME}" aria-label="Tab 1 title"/>
+  <input class="btn" type="radio" name="{NAME}" aria-label="Tab 2 title"/>
 </form>
 ```
 Without HTML form
 ```html
 <div class="filter">
-  <input class="btn filter-reset" type="radio" name="{name}" aria-label="{label}"/>
-  <input class="btn" type="radio" name="{name}" aria-label="{label}"/>
+  <input class="btn filter-reset" type="radio" name="{NAME}" aria-label="×"/>
+  <input class="btn" type="radio" name="{NAME}" aria-label="Tab 1 title"/>
+  <input class="btn" type="radio" name="{NAME}" aria-label="Tab 2 title"/>
 </div>
 ```
 
 #### Rules
-- replace `{name}` and `{label}` with proper values for each radio input
+- replace `{NAME}` with proper value, according to the context of the filter
 - Each set of radio inputs must have unique `name` attributes to avoid conflicts
 - Use `<form>` tag when possible and only use `<div>` if you can't use a HTML form for some reason
 - Use `filter-reset` class for the reset button
@@ -745,7 +755,7 @@ Indicators are used to place an element on the corner of another element
 
 #### Rules
 - Add all indicator elements (with `indicator-item` class) before the main content
-- {placement} is optional and can have one of each horizonal/vertical class names. default is `indicator-end indicator-top`
+- {placement} is optional and can have one of each horizontal/vertical class names. default is `indicator-end indicator-top`
 
 ### input
 Text Input is a simple input field
@@ -859,7 +869,7 @@ List is a vertical layout to display information in rows
 #### Class Names:
 - Component: `list`, `list-row`
 - Modifier: `list-col-wrap`, `list-col-grow`
-  
+
 #### Syntax
 ```html
 <ul class="list">
@@ -1247,7 +1257,7 @@ Stack visually puts elements on top of each other
 #### Class Names:
 - Component: `stack`
 - Modifier: `stack-top`, `stack-bottom`, `stack-start`, `stack-end`
-  
+
 #### Syntax
 ```html
 <div class="stack {MODIFIER}">{CONTENT}</div>
@@ -1266,7 +1276,7 @@ Stat is used to show numbers and data in a block
 - Component: `stats`
 - Part: `stat`, `stat-title`, `stat-value`, `stat-desc`, `stat-figure`, `stat-actions`
 - Direction: `stats-horizontal`, `stats-vertical`
-  
+
 #### Syntax
 ```html
 <div class="stats {MODIFIER}">
@@ -1288,7 +1298,7 @@ Status is a really small icon to visually show the current status of an element,
 - Component: `status`
 - Color: `status-neutral`, `status-primary`, `status-secondary`, `status-accent`, `status-info`, `status-success`, `status-warning`, `status-error`
 - Size: `status-xs`, `status-sm`, `status-md`, `status-lg`, `status-xl`
-  
+
 #### Syntax
 ```html
 <span class="status {MODIFIER}"></span>
@@ -1308,7 +1318,7 @@ Steps can be used to show a list of steps in a process
 - Part: `step`, `step-icon`
 - Color: `step-neutral`, `step-primary`, `step-secondary`, `step-accent`, `step-info`, `step-success`, `step-warning`, `step-error`
 - Direction: `steps-vertical`, `steps-horizontal`
-  
+
 #### Syntax
 ```html
 <ul class="steps {MODIFIER}">
@@ -1332,7 +1342,7 @@ Swap allows you to toggle the visibility of two elements using a checkbox or a c
 - Part: `swap-on`, `swap-off`, `swap-indeterminate`
 - Modifier: `swap-active`
 - Style: `swap-rotate`, `swap-flip`
-  
+
 #### Syntax
 Using checkbox
 ```html
@@ -1367,7 +1377,7 @@ Tabs can be used to show a list of links in a tabbed format
 - Style: `tabs-box`, `tabs-border`, `tabs-lift`
 - Modifier: `tab-active`, `tab-disabled`
 - Placement: `tabs-top`, `tabs-bottom`
-  
+
 #### Syntax
 Using buttons:
 ```html
@@ -1397,7 +1407,7 @@ Table can be used to show a list of data in a table format
 - Component: `table`
 - Modifier: `table-zebra`, `table-pin-rows`, `table-pin-cols`
 - Size: `table-xs`, `table-sm`, `table-md`, `table-lg`, `table-xl`
-  
+
 #### Syntax
 ```html
 <div class="overflow-x-auto">
@@ -1446,7 +1456,7 @@ If a checked checkbox input or a checked radio input with theme-controller class
 
 #### Class names
 - component: `theme-controller`
-  
+
 #### Syntax
 ```html
 <input type="checkbox" value="{theme-name}" class="theme-controller" />
@@ -1465,7 +1475,7 @@ Timeline component shows a list of events in chronological order
 - Part: `timeline-start`, `timeline-middle`, `timeline-end`
 - Modifier: `timeline-snap-icon`, `timeline-box`, `timeline-compact`
 - Direction: `timeline-vertical`, `timeline-horizontal`
-  
+
 #### Syntax
 ```html
 <ul class="timeline {MODIFIER}">
@@ -1491,7 +1501,7 @@ Toast is a wrapper to stack elements, positioned on the corner of page
 #### Class Names:
 - Component: `toast`
 - Placement: `toast-start`, `toast-center`, `toast-end`, `toast-top`, `toast-middle`, `toast-bottom`
-  
+
 #### Syntax
 ```html
 <div class="toast {MODIFIER}">{CONTENT}</div>
@@ -1509,7 +1519,7 @@ Toggle is a checkbox that is styled to look like a switch button
 - Component: `toggle`
 - Color: `toggle-primary`, `toggle-secondary`, `toggle-accent`, `toggle-neutral`, `toggle-success`, `toggle-warning`, `toggle-info`, `toggle-error`
 - Size: `toggle-xs`, `toggle-sm`, `toggle-md`, `toggle-lg`, `toggle-xl`
-  
+
 #### Syntax
 ```html
 <input type="checkbox" class="toggle {MODIFIER}" />
@@ -1526,7 +1536,7 @@ Validator class changes the color of form elements to error or success based on 
 #### Class names
 - component: `validator`
 - part: `validator-hint`
-  
+
 #### Syntax
 ```html
 <input type="{type}" class="input validator" required />
